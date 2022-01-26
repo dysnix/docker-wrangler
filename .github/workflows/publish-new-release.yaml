@@ -22,6 +22,8 @@ jobs:
       push: true
       username: services1dysnix
       version: ${{ needs.check-release.outputs.version }}
+      build-args: |
+        VERSION=${{ needs.check-release.outputs.version }}
     secrets:
       password: "${{ secrets.DOCKERHUB_TOKEN }}"
 
