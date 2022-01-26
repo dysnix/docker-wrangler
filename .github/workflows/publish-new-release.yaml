@@ -21,7 +21,7 @@ jobs:
       ## Unconditionally push fresh releases
       push: true
       username: services1dysnix
-      version: ${{ needs.check-release.outputs.version }}-r1
+      version: ${{ needs.check-release.outputs.version }}
     secrets:
       password: "${{ secrets.DOCKERHUB_TOKEN }}"
 
