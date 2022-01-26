@@ -1,0 +1,22 @@
+name: Publish new release
+on:
+  push:
+  # schedule:
+  #   - cron: '*/5 * * * *'
+
+jobs:
+  check-release:
+    name: Check release
+    uses: dysnix/github-workflows/.github/workflows/upstream.new-release.yaml@upstream-release
+    with:
+      repository: cloudflare/wrangler
+      version-regex: ^v\d+
+
+  publish:
+    name: Publish release
+    runs-on: ubuntu-latest
+    needs: [check-release]
+    steps:
+      - run: |
+          echo 'version: ${{ needs.check-release.outputs.version }}'
+          echo 'publish: ${{ needs.check-release.outputs.publish }}'
