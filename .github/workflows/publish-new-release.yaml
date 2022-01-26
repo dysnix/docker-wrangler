@@ -9,7 +9,7 @@ jobs:
     name: Check release
     uses: dysnix/github-workflows/.github/workflows/upstream.new-release.yaml@upstream-release
     with:
-      repository: cloudflare/wrangler
+      upstream: cloudflare/wrangler
       version-regex: ^v\d+
 
   publish:
