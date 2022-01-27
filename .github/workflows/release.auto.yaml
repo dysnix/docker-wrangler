@@ -6,25 +6,10 @@ on:
 jobs:
   check-release:
     name: Check release
-    uses: dysnix/github-workflows/.github/workflows/upstream.new-release.yaml@upstream-release
+    uses: dysnix/github-workflows/.github/workflows/upstream.new-release.yaml@main
     with:
       upstream: cloudflare/wrangler
       version-regex: ^v\d+
-
-  build:
-    name: Docker Image
-    uses: dysnix/github-workflows/.github/workflows/docker.build-and-push.yaml@upstream-release
-    needs: [check-release]
-    if: ${{ needs.check-release.outputs.publish }}
-    with:
-      ## Unconditionally push fresh releases
-      push: true
-      username: services1dysnix
-      version: ${{ needs.check-release.outputs.version }}
-      build-args: |
-        VERSION=${{ needs.check-release.outputs.version }}
-    secrets:
-      password: "${{ secrets.DOCKERHUB_TOKEN }}"
 
   publish:
     name: Publish release
