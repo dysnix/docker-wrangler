@@ -22,7 +22,7 @@ jobs:
           string: ${{ github.ref }}
           extractor_regex: ${{ env.VERSION_REGEX }}
           extractor_group: 2
-  
+
   build:
     name: Docker Image
     uses: dysnix/github-workflows/.github/workflows/docker.build-and-push.yaml@main
