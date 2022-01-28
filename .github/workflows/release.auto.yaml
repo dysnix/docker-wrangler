@@ -19,7 +19,7 @@ jobs:
       -
         name: Publish new release
         uses: ncipollo/release-action@v1
-        if: ${{ needs.check-release.outputs.publish }}
+        if: ${{ needs.check-release.outputs.publish == 'true' }}
         with:
           commit: main
           token: ${{ secrets.GITHUB_TOKEN }}
